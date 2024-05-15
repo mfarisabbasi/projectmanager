@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-open sm:px-20 px-10 py-12 text-primary;
+}
+
+main {
+  @apply h-screen flex flex-col justify-center items-center;
+}
+
+h2 {
+  @apply sm:text-3xl text-xl font-medium text-primary;
+}
+
+h4 {
+  @apply sm:text-base text-sm font-normal text-primary;
+}
+
+.form-input {
+  @apply placeholder-slate-400 bg-bg border border-slate-300 focus:border-primary focus:outline-none focus:ring-8 focus:ring-bg;
+}
