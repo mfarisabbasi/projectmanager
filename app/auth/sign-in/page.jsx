@@ -5,9 +5,13 @@ import { useForm } from "react-hook-form";
 import { signInValidation } from "@/lib/validations";
 import { useState } from "react";
 import SignInForm from "@/components/auth/SignInForm";
+import userStore from "@/store/store";
+import { useRouter } from "next/navigation";
 
 const SignIn = () => {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const setUser = userStore((state) => state.setUser);
 
   const { toast } = useToast();
 
@@ -32,12 +36,13 @@ const SignIn = () => {
 
     if (response.status === 200) {
       const data = await response.json();
-      console.log(data);
+      setUser(data);
       toast({
         title: "Success",
         description: response.statusText,
         className: "bg-green-500 text-black",
       });
+      router.refresh();
     } else {
       console.log(response);
       toast({

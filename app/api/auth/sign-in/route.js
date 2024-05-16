@@ -2,6 +2,7 @@ import User from "@/models/userModel";
 import { connectToDB } from "@/lib/database";
 import { NextResponse } from "next/server";
 import { generateToken } from "@/lib/utils";
+import { cookies } from "next/headers";
 
 export const POST = async (req) => {
   const { email, password } = await req.json();
@@ -19,6 +20,8 @@ export const POST = async (req) => {
     }
 
     if (userExist.matchPassword(password)) {
+      const token = generateToken(userExist._id);
+      cookies().set("token", token, { secure: true });
       return NextResponse.json(
         {
           fullName: userExist.fullName,
@@ -26,7 +29,7 @@ export const POST = async (req) => {
           membership: userExist.membership,
           email_verified: userExist.email_verified,
           _id: userExist._id,
-          token: generateToken(userExist._id),
+          token: token,
         },
         {
           status: 200,
