@@ -16,7 +16,7 @@ main {
 }
 
 h2 {
-  @apply sm:text-3xl text-xl font-medium text-primary;
+  @apply sm:text-2xl text-xl font-medium text-primary;
 }
 
 h4 {
