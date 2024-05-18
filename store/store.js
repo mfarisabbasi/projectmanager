@@ -1,9 +1,13 @@
 import { create } from "zustand";
 
-const userStore = create((set) => ({
+export const userStore = create((set) => ({
   user: undefined,
   setUser: (userData) => set({ user: userData }),
   removeUser: () => set({ user: undefined }),
 }));
 
-export default userStore;
+export const workspaceStore = create((set) => ({
+  workspaces: undefined,
+  setWorkspaces: (workspaces) => set({ workspaces: workspaces }),
+  // removeUser: () => set({ user: undefined }),
+}));

@@ -18,6 +18,9 @@ main {
 h2 {
   @apply sm:text-2xl text-xl font-medium text-primary;
 }
+h3 {
+  @apply sm:text-xl text-sm font-normal text-primary;
+}
 
 h4 {
   @apply sm:text-base text-sm font-normal text-primary;

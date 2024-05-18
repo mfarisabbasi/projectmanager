@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { signInValidation } from "@/lib/validations";
 import { useState } from "react";
 import SignInForm from "@/components/auth/SignInForm";
-import userStore from "@/store/store";
+import { userStore } from "@/store/store";
 import { useRouter } from "next/navigation";
 
 const SignIn = () => {

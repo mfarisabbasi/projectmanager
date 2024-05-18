@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { FaBell } from "react-icons/fa6";
 import { IoMdArrowDropdown } from "react-icons/io";
 import MainButton from "./MainButton";
-import userStore from "@/store/store";
+import { userStore } from "@/store/store";
 import Link from "next/link";
 
 const Header = () => {
