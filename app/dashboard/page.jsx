@@ -36,6 +36,7 @@ const Dashboard = () => {
         showNewWorkspace={showNewWorkspace}
         setShowNewWorkspace={setShowNewWorkspace}
         setSelectedWorkspace={setSelectedWorkspace}
+        selectedWorkspace={selectedWorkspace}
       />
       <div className="bg-gray-100 p-4 h-full w-full rounded-lg ml-4">
         {selectedWorkspace ? (

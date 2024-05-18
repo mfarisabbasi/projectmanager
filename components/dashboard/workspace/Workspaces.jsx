@@ -1,6 +1,8 @@
 import { IoIosAdd } from "react-icons/io";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Workspaces = ({
+  selectedWorkspace,
   setSelectedWorkspace,
   setShowNewWorkspace,
   showNewWorkspace,
@@ -19,17 +21,31 @@ const Workspaces = ({
           }}
         />
       </div>
-      {workspaces?.map((workspace, index) => {
-        return (
-          <div
-            key={index}
-            className="bg-primary px-4 py-4 cursor-pointer rounded-lg mt-4"
-            onClick={() => setSelectedWorkspace(workspace)}
-          >
-            <h4 className="text-white">{workspace.name}</h4>
-          </div>
-        );
-      })}
+      <ScrollArea className="h-[600px]">
+        {workspaces?.map((workspace, index) => {
+          return (
+            <div
+              key={index}
+              className={`${
+                selectedWorkspace?._id === workspace?._id
+                  ? "bg-primary"
+                  : "bg-zinc-200"
+              } px-4 py-2 cursor-pointer rounded-md mt-4 transition duration-300`}
+              onClick={() => setSelectedWorkspace(workspace)}
+            >
+              <h4
+                className={`${
+                  selectedWorkspace?._id === workspace?._id
+                    ? "text-white"
+                    : "text-primary"
+                }`}
+              >
+                {workspace.name}
+              </h4>
+            </div>
+          );
+        })}
+      </ScrollArea>
     </div>
   );
 };
