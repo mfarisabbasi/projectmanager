@@ -5,9 +5,10 @@ import { Skeleton } from "../ui/skeleton";
 import { useRouter } from "next/navigation";
 import { FaBell } from "react-icons/fa6";
 import { IoMdArrowDropdown } from "react-icons/io";
-import MainButton from "./MainButton";
 import { userStore } from "@/store/store";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import MainButton from "./MainButton";
 
 const Header = () => {
   const router = useRouter();
@@ -71,6 +72,7 @@ const Header = () => {
         <h1 className="sm:hidden block text-2xl font-bold">PM</h1>
       </Link>
 
+      {/* Menu */}
       <div className="lg:flex hidden gap-10 items-center justify-center font-medium">
         {navLinks.map((link, index) => {
           return (
@@ -85,6 +87,7 @@ const Header = () => {
         })}
       </div>
 
+      {/* Buttons & Dropdown */}
       <div className="lg:flex hidden justify-center items-center gap-6">
         {loading ? (
           <>
@@ -116,28 +119,36 @@ const Header = () => {
               </div>
 
               {showDropdown && (
-                <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                  <div
-                    onClick={() => setShowDropdown(false)}
-                    className="flex flex-col gap-4 p-3"
-                    role="menu"
-                    aria-orientation="vertical"
-                    aria-labelledby="options-menu"
+                <AnimatePresence>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1 }}
+                    className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
                   >
-                    <Link
-                      href="/dashboard"
-                      className="text-primary hover:text-sec transition-colors duration-500 cursor-pointer"
+                    <div
+                      onClick={() => setShowDropdown(false)}
+                      className="flex flex-col gap-4 p-3"
+                      role="menu"
+                      aria-orientation="vertical"
+                      aria-labelledby="options-menu"
                     >
-                      Dashboard
-                    </Link>
-                    <p
-                      onClick={signOut}
-                      className="text-primary hover:text-sec transition-colors duration-500 cursor-pointer"
-                    >
-                      Sign out
-                    </p>
-                  </div>
-                </div>
+                      <Link
+                        href="/dashboard"
+                        className="text-primary hover:text-sec transition-colors duration-500 cursor-pointer"
+                      >
+                        Dashboard
+                      </Link>
+                      <p
+                        onClick={signOut}
+                        className="text-primary hover:text-sec transition-colors duration-500 cursor-pointer"
+                      >
+                        Sign out
+                      </p>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
               )}
             </div>
           </>
